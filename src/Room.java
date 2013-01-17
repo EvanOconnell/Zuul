@@ -1,3 +1,4 @@
+
 /*
  * Class Room - a room in an adventure game.
  *
@@ -15,45 +16,106 @@
 
 class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private String description;
+    private Room northExit;
+    private Room eastExit;
+    private Room southExit;
+    private Room westExit;
+    
 
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      */
-    public Room(String description) 
-    {
-        this.description = description;
+    public Room(String description){
+        setDescription(description);
     }
-
+    
     /**
-     * Define the exits of this room.  Every direction either leads
+     * Remember to define the exits of this room.  Every direction either leads
      * to another room or is null (no exit there).
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
-    {
-        if(north != null)
-            northExit = north;
-        if(east != null)
-            eastExit = east;
-        if(south != null)
-            southExit = south;
-        if(west != null)
-            westExit = west;
+    public Room(String description, Room northexit, Room eastexit, Room southexit, Room westexit){
+    	setDescription(description);
+    	setExits(northexit, eastexit, southexit, westexit);
+    }
+    
+    /**
+     * I may or may not use this 'blank' constructor. I have 
+     * used something like it in other situations to avoid 
+     * NPEs (ie, when adding to list), but I probably won't 
+     * need it here.
+     */
+    public static Room Empty(){
+    	return new Room("");
     }
 
     /**
      * Return the description of the room (the one that was defined
      * in the constructor).
      */
-    public String getDescription()
-    {
+    public String getDescription(){
         return description;
     }
+    
+	public Room getNorthExit() {
+		return northExit;
+	}
+
+	public Room getEastExit() {
+		return eastExit;
+	}
+
+	public Room getSouthExit() {
+		return southExit;
+	}
+
+	public Room getWestExit() {
+		return westExit;
+	}
+    
+	public boolean hasNorthExit() {
+		return northExit!=null;
+	}
+
+	public boolean hasEastExit() {
+		return eastExit!=null;
+	}
+
+	public boolean hasSouthExit() {
+		return southExit!=null;
+	}
+
+	public boolean hasWestExit() {
+		return westExit!=null;
+	}
+	
+	public void setExits(Room north, Room east, Room south, Room west){
+		setNorthExit(north);
+        setEastExit(east);
+        setSouthExit(south);
+        setWestExit(west);
+	}
+	
+    public void setDescription(String description){
+    	this.description = description;
+    }
+
+	public void setNorthExit(Room northExit) {
+		this.northExit = northExit;
+	}
+	
+	public void setEastExit(Room eastExit) {
+		this.eastExit = eastExit;
+	}
+
+	public void setSouthExit(Room southExit) {
+		this.southExit = southExit;
+	}
+
+	public void setWestExit(Room westExit) {
+		this.westExit = westExit;
+	}
 
 }
