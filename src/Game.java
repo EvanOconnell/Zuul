@@ -17,7 +17,7 @@
 
 class Game 
 {
-    private Parser parser;
+    private final Parser parser;
     private Room currentRoom;
         
     /**
@@ -76,12 +76,15 @@ class Game
      */
     private void printWelcome()
     {
-        System.out.println();
-        System.out.println("Welcome to Adventure!");
-        System.out.println("Adventure is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
+        System.out.println("\nWelcome to Adventure!" +
+    		"\nAdventure is a new, incredibly boring adventure game." +
+    		"\nType 'help' if you need help.\n"
+		);
+        printExits();
+    }
+    
+    private void printExits(){
+    	System.out.println("You are in  the room:\t" + currentRoom.getDescription());
         System.out.print("Exits: ");
         if(currentRoom.northExit != null)
             System.out.print("north ");
@@ -107,9 +110,10 @@ class Game
             System.out.println("I don't know what you mean...");
             return false;
         }
-
+        
+        
         String commandWord = command.getCommandWord();
-        if (commandWord.equals("help"))
+        if (commandWord.equals("help")) //TODO: Change to equalsIgnorecase();
             printHelp();
         else if (commandWord.equals("go"))
             goRoom(command);
@@ -128,11 +132,11 @@ class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("You are lost. You are alone. You wander" +
+        		"\naround at the university.\n" +
+        		"\nYour command words are:\n"
+    		);
+        System.out.println("   go | quit | help");
     }
 
     /** 
@@ -164,17 +168,7 @@ class Game
             System.out.println("There is no door!");
         else {
             currentRoom = nextRoom;
-            System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
-            if(currentRoom.northExit != null)
-                System.out.print("north ");
-            if(currentRoom.eastExit != null)
-                System.out.print("east ");
-            if(currentRoom.southExit != null)
-                System.out.print("south ");
-            if(currentRoom.westExit != null)
-                System.out.print("west ");
-            System.out.println();
+            printExits();
         }
     }
 
