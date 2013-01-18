@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+
 
 /*
  * Class Room - a room in an adventure game.
@@ -17,105 +21,77 @@
 class Room 
 {
     private String description;
-    private Room northExit;
-    private Room eastExit;
-    private Room southExit;
-    private Room westExit;
+//    private Room northExit;
+//    private Room eastExit;
+//    private Room southExit;
+//    private Room westExit;
+    
+    private HashMap<Direction, Room> exits;
     
 
     /**
      * Create a room described "description". Initially, it has
-     * no exits. "description" is something like "a kitchen" or
-     * "an open court yard".
+     * no exits. "description" should be able to follow the words 
+     * "You are in" and is something like "a kitchen" or "an 
+     * open court yard".
      */
     public Room(String description){
         setDescription(description);
     }
-    
-    /**
-     * Remember to define the exits of this room.  Every direction either leads
-     * to another room or is null (no exit there).
-     */
-    public Room(String description, Room northexit, Room eastexit, Room southexit, Room westexit){
-    	setDescription(description);
-    	setExits(northexit, eastexit, southexit, westexit);
-    }
-    
-    /**
-     * I may or may not use this 'blank' constructor. I have 
-     * used something like it in other situations to avoid 
-     * NPEs (ie, when adding to list), but I probably won't 
-     * need it here.
-     */
-    public static Room Empty(){
-    	return new Room("");
-    }
 
     /**
-     * Return the description of the room (the one that was defined
-     * in the constructor).
+     * @returns the description of the room
      */
     public String getDescription(){
         return description;
     }
     
-	public Room getNorthExit() {
-		return northExit;
-	}
-
-	public Room getEastExit() {
-		return eastExit;
-	}
-
-	public Room getSouthExit() {
-		return southExit;
-	}
-
-	public Room getWestExit() {
-		return westExit;
-	}
+    /**
+     * This may return a null value. Use hasExit() to verify if an
+     * exit has been defined already.
+     */
+    public Room getExit(Direction dir){
+    	return exits.get(dir);
+    }
     
-	public boolean hasNorthExit() {
-		return northExit!=null;
-	}
-
-	public boolean hasEastExit() {
-		return eastExit!=null;
-	}
-
-	public boolean hasSouthExit() {
-		return southExit!=null;
-	}
-
-	public boolean hasWestExit() {
-		return westExit!=null;
-	}
-	
-	public void setExits(Room north, Room east, Room south, Room west){
-		setNorthExit(north);
-        setEastExit(east);
-        setSouthExit(south);
-        setWestExit(west);
-	}
+    public boolean hasExit(Direction dir){
+    	return exits.get(dir)!=null;
+    }
+    
+    public Direction isAnExit(Room room){
+    	if(exits.containsValue(room)){
+    		for(Entry<Direction, Room> entry : exits.entrySet()){
+    			if(entry.getValue().equals(room)) return entry.getKey();
+    		}
+    	}
+    	return Direction.NULL; 
+    	/* returns null in case I want to read the result of this method 
+    	 * in a situation where I don't want an actual null value.*/
+    }
 	
     public void setDescription(String description){
     	this.description = description;
     }
-
-	public void setNorthExit(Room northExit) {
-		this.northExit = northExit;
+    
+    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down){
+		setExit(north, Direction.NORTH);
+		setExit(east, Direction.EAST);
+		setExit(south, Direction.SOUTH);
+		setExit(west, Direction.WEST);
+		setExit(up, Direction.UP);
+		setExit(down, Direction.DOWN);
+	}
+    
+    /**
+     * This calls the Hashmap.put() method, meaning it will
+     * override any existing exit in the same key (direction).
+     */
+	public void setExit(Room exit, Direction dir){
+		exits.put(dir, exit);
 	}
 	
-	public void setEastExit(Room eastExit) {
-		this.eastExit = eastExit;
-	}
-
-	public void setSouthExit(Room southExit) {
-		this.southExit = southExit;
-	}
-
-	public void setWestExit(Room westExit) {
-		this.westExit = westExit;
+	public enum Direction{
+		NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
 	}
 
 }

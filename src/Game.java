@@ -34,7 +34,7 @@ class Game
      */
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office, workshop;
+        Room outside, theatre, pub, lab, office;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -42,16 +42,13 @@ class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        workshop = new Room("in the craft and workshop");
         
-        
-        // initialise room exits
-        outside.setExits(null, theatre, lab, pub);
-        theatre.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
-        workshop.setExits(lab, null, null, null);
+        // very nervous about all these nulls being thrown around!
+        outside.setExits(null, theatre, lab, pub, null, null);
+        theatre.setExits(null, null, null, outside, null, null);
+        pub.setExits(null, outside, null, null, null, null);
+        lab.setExits(outside, office, null, null, null, null);
+        office.setExits(null, null, null, lab, null, null);
         
         currentRoom = outside;  // start game outside
     }
@@ -89,10 +86,10 @@ class Game
     private void printExits(){
     	System.out.println("You are " + currentRoom.getDescription());
         System.out.print("Exits: \t"+
-        		(currentRoom.hasNorthExit() ? "north " : "")+
-				(currentRoom.hasEastExit() ? "east " : "")+
-				(currentRoom.hasSouthExit() ? "south " : "")+
-				(currentRoom.hasWestExit() ? "west " : "")+
+        		(currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
+				(currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
+				(currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
+				(currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
 				"\n"
     		);
     }
@@ -154,15 +151,16 @@ class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
+        // TODO: improve by integrating the string directions with the enum directions
         Room nextRoom = null;
         if(direction.equals("north"))
-            nextRoom = currentRoom.getNorthExit();
+            nextRoom = currentRoom.getExit(Room.Direction.NORTH);
         if(direction.equals("east"))
-            nextRoom = currentRoom.getEastExit();
+            nextRoom = currentRoom.getExit(Room.Direction.EAST);
         if(direction.equals("south"))
-            nextRoom = currentRoom.getSouthExit();
+            nextRoom = currentRoom.getExit(Room.Direction.SOUTH);
         if(direction.equals("west"))
-            nextRoom = currentRoom.getWestExit();
+            nextRoom = currentRoom.getExit(Room.Direction.WEST);
 
         if (nextRoom == null)
             System.out.println("There is no door!");
