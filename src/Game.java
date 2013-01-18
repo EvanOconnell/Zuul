@@ -42,7 +42,7 @@ class Game
      */
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
+        Room outside, theatre, pub, lab, office, workshop, basement, hallway, vault;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -50,6 +50,11 @@ class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        workshop = new Room("in the craft/wood workshop");
+        basement = new Room("in the workshop's stoarge Basement");
+        hallway = new Room("in a dark hallway out of the basement you've never seen before...");
+        vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
+        
         
         /* nulls should be okay since they're caught in Room.setExit()
          * right before they reach the hashmap.
@@ -58,7 +63,11 @@ class Game
         theatre.setExits(null, null, null, outside, null, null);
         pub.setExits(null, outside, null, null, null, null);
         lab.setExits(outside, office, null, null, null, null);
-        office.setExits(null, null, null, lab, null, null);
+        office.setExits(null, null, workshop, lab, null, null);
+        workshop.setExits(office, null, null, null, null, basement);
+        basement.setExits(hallway, null, null, null, workshop, null);
+        hallway.setExits(vault, null, basement, null, null, null);
+        vault.setExits(null, null, hallway, null, null, null);
         
         currentRoom = outside;
     }
