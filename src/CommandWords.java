@@ -5,8 +5,7 @@
  * This class holds an enumeration of all command words known to the game.
  * It is used to recognise commands as they are typed in.
  *
- * @author  Michael Kolling and David J. Barnes
- * @version 1.0 (February 2002)
+ * @version 1.1 (1/17/13)
  */
 
 class CommandWords
