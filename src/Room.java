@@ -21,11 +21,6 @@ import java.util.Map.Entry;
 class Room 
 {
     private String description;
-//    private Room northExit;
-//    private Room eastExit;
-//    private Room southExit;
-//    private Room westExit;
-    
     private HashMap<Direction, Room> exits;
     
 
@@ -37,6 +32,16 @@ class Room
      */
     public Room(String description){
         setDescription(description);
+        exits = new HashMap<Room.Direction, Room>();
+    }
+    
+    /**
+     * An empty Room object, for use instead of 'null' in the setExits()
+     * method. Since a hashmap is used, this will help avoid NPEs.
+     * @return An empty Room object.
+     */
+    public static Room empty(){
+    	return new Room(""); //syntactically is this the best way to do this?
     }
 
     /**
@@ -55,7 +60,11 @@ class Room
     }
     
     public boolean hasExit(Direction dir){
-    	return exits.get(dir)!=null;
+    	return !(exits.get(dir)==null||exits.get(dir).isEmpty());
+    }
+    
+    public boolean isEmpty(){
+    	return description==""&&(exits.isEmpty()||exits==null);
     }
     
     public Direction isAnExit(Room room){
@@ -85,13 +94,21 @@ class Room
     /**
      * This calls the Hashmap.put() method, meaning it will
      * override any existing exit in the same key (direction).
+     * 
+     * Nulls should be okay as parameters since they will be
+     * caught here and replaced by Room.empty()
      */
 	public void setExit(Room exit, Direction dir){
-		exits.put(dir, exit);
+		exits.put(dir, exit==null ? Room.empty() : exit);
 	}
 	
 	public enum Direction{
 		NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
+	}
+	
+	@Override
+	public String toString(){
+		return "Des: \""+this.getDescription()+"\", "+exits;
 	}
 
 }

@@ -28,6 +28,14 @@ class Game
         createRooms();
         parser = new Parser();
     }
+    
+    /**
+     * This is used for testing in jar form or eclipse.
+     */
+    public static void main(String[] args){
+    	Game game = new Game();
+    	game.play();
+    }
 
     /**
      * Create all the rooms and link their exits together.
@@ -43,16 +51,18 @@ class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         
-        // very nervous about all these nulls being thrown around!
+        /* nulls should be okay since they're caught in Room.setExit()
+         * right before they reach the hashmap.
+         */
         outside.setExits(null, theatre, lab, pub, null, null);
         theatre.setExits(null, null, null, outside, null, null);
         pub.setExits(null, outside, null, null, null, null);
         lab.setExits(outside, office, null, null, null, null);
         office.setExits(null, null, null, lab, null, null);
         
-        currentRoom = outside;  // start game outside
+        currentRoom = outside;
     }
-
+    
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -90,6 +100,8 @@ class Game
 				(currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
 				(currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
 				(currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
+				(currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
+				(currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
 				"\n"
     		);
     }
@@ -161,9 +173,13 @@ class Game
             nextRoom = currentRoom.getExit(Room.Direction.SOUTH);
         if(direction.equals("west"))
             nextRoom = currentRoom.getExit(Room.Direction.WEST);
+        if(direction.equals("up"))
+            nextRoom = currentRoom.getExit(Room.Direction.UP);
+        if(direction.equals("down"))
+            nextRoom = currentRoom.getExit(Room.Direction.DOWN);
 
-        if (nextRoom == null)
-            System.out.println("There is no door!");
+        if (nextRoom == null || nextRoom.isEmpty())
+            System.out.println("There is no exit that way!");
         else {
             currentRoom = nextRoom;
             printExits();
