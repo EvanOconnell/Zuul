@@ -10,8 +10,12 @@
  *  you've never seen before. The dark hallway leads to the vault full of
  *  old pieces of technology and relics of the past the school has saved.
  *  
- * @author Evan O'Connell
+ * -------
+ * 
  * @version 2.0 (1/28/13)
+ * @author Evan O'Connell
+ * 
+ * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
  */
 
 class Game 

@@ -3,7 +3,7 @@ import java.util.Map.Entry;
 
 
 
-/*
+/**
  * Class Room - a room in an adventure game.
  *
  * This class is the main class of the "World of Zuul" application. 
@@ -12,9 +12,14 @@ import java.util.Map.Entry;
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  The exits are labelled north, 
  * east, south, west.  For each direction, the room stores a reference
- * to the neighboring room, or null if there is no exit in that direction.
+ * to the neighbouring room, or null if there is no exit in that direction.
+ * 
+ * -------
  * 
  * @version 2.0 (1/28/13)
+ * @author Evan O'Connell
+ * 
+ * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
  */
 
 class Room 
