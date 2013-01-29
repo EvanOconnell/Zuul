@@ -10,7 +10,8 @@
  *  you've never seen before. The dark hallway leads to the vault full of
  *  old pieces of technology and relics of the past the school has saved.
  *  
- * @version 1.1 (1/17/13)
+ * @author Evan O'Connell
+ * @version 2.0 (1/28/13)
  */
 
 class Game 
@@ -52,7 +53,6 @@ class Game
         basement = new Room("in the workshop's stoarge Basement");
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
-        
         
         /* nulls should be okay since they're caught in Room.setExit()
          * right before they reach the hashmap.
@@ -99,6 +99,24 @@ class Game
 		);
         printExits();
     }
+    
+    /**
+     * Prints out all possible exits from your location.
+     * 
+     * AKA printLocationInfo();
+     */
+//    private void printExits(){
+//    	System.out.println("You are " + currentRoom.getDescription());
+//        System.out.print("Exits: \t"+
+//        		(currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
+//				(currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
+//				(currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
+//				(currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
+//				(currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
+//				(currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
+//				"\n"
+//    		);
+//    }
     
     private void printExits(){
     	System.out.println("You are " + currentRoom.getDescription());

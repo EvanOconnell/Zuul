@@ -14,7 +14,7 @@ import java.util.Map.Entry;
  * east, south, west.  For each direction, the room stores a reference
  * to the neighboring room, or null if there is no exit in that direction.
  * 
- * @version 1.1 (1/17/13)
+ * @version 2.0 (1/28/13)
  */
 
 class Room 
