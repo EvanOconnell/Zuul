@@ -62,6 +62,10 @@ class Room
     	return str;
     }
     
+    public String getLongDescription(){
+    	return "You are "+description+".\n"+getExitLocationsString();
+    }
+    
     /**
      * This may return a null value. Use hasExit() to verify if an
      * exit has been defined already.

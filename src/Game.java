@@ -97,7 +97,11 @@ class Game
     		"\nAdventure is a new, incredibly boring adventure game." +
     		"\nType 'help' if you need help.\n"
 		);
-        printExits();
+        printRoomDescription();
+    }
+    
+    private void printRoomDescription(){
+    	System.out.println(currentRoom.getLongDescription());
     }
     
     /**
@@ -117,19 +121,6 @@ class Game
 //				"\n"
 //    		);
 //    }
-    
-    private void printExits(){
-    	System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: \t"+
-        		(currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
-				(currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
-				(currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
-				(currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
-				(currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
-				(currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
-				"\n"
-    		);
-    }
 
     /**
      * Given a command, process (that is: execute) the command.
@@ -207,7 +198,7 @@ class Game
             System.out.println("There is no exit that way!");
         else {
             currentRoom = nextRoom;
-            printExits();
+            printRoomDescription();
         }
     }
 
