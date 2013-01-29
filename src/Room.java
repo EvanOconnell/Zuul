@@ -40,7 +40,7 @@ class Room
      * @return An empty Room object.
      */
     public static Room empty(){
-    	return new Room(""); //syntactically is this the best way to do this?
+    	return new Room(""); 
     }
 
     /**
@@ -98,12 +98,12 @@ class Room
     }
     
     public void setExits(Room north, Room east, Room south, Room west, Room up, Room down){
-		setExit(north, Direction.NORTH);
-		setExit(east, Direction.EAST);
-		setExit(south, Direction.SOUTH);
-		setExit(west, Direction.WEST);
-		setExit(up, Direction.UP);
-		setExit(down, Direction.DOWN);
+		if(north!=null) setExit(north, Direction.NORTH);
+		if(east!=null) setExit(east, Direction.EAST);
+		if(south!=null) setExit(south, Direction.SOUTH);
+		if(west!=null) setExit(west, Direction.WEST);
+		if(up!=null) setExit(up, Direction.UP);
+		if(down!=null) setExit(down, Direction.DOWN);
 	}
     
     /**

@@ -100,6 +100,11 @@ class Game
         printRoomDescription();
     }
     
+    /**
+     * Retrieves and prints description info from currentRoom object. 
+     * 
+     * Replaces printExits()
+     */
     private void printRoomDescription(){
     	System.out.println(currentRoom.getLongDescription());
     }
