@@ -50,6 +50,18 @@ class Room
         return description;
     }
     
+    /** This method creates a string returnable, concatenates all exit's directions and returns the variable. 
+     * 
+     * @return String representation of a list of existing exit *directions*
+     */
+    public String getExitLocationsString(){
+    	String str = "Exits: ";
+    	for(Direction exitDir : exits.keySet()){
+    		str += exitDir.toString()+" ";
+    	}
+    	return str;
+    }
+    
     /**
      * This may return a null value. Use hasExit() to verify if an
      * exit has been defined already.
@@ -103,11 +115,11 @@ class Room
 	
 	public enum Direction{
 		NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
-	}
-	
-	@Override
-	public String toString(){
-		return "Des: \""+this.getDescription()+"\", "+exits;
+		
+		@Override
+		public String toString(){
+			return super.toString().toLowerCase();
+		}
 	}
 
 }
