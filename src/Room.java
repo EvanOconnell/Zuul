@@ -35,7 +35,7 @@ class Room
      * open court yard".
      */
     public Room(String description){
-        setDescription(description);
+        this.description = description;
         exits = new HashMap<Room.Direction, Room>();
     }
     
@@ -45,7 +45,7 @@ class Room
      * @return An empty Room object.
      */
     public static Room empty(){
-    	return new Room(""); 
+        return new Room(""); 
     }
 
     /**
@@ -60,15 +60,15 @@ class Room
      * @return String representation of a list of existing exit *directions*
      */
     public String getExitLocationsString(){
-    	String str = "Exits: ";
-    	for(Direction exitDir : exits.keySet()){
-    		str += exitDir.toString()+" ";
-    	}
-    	return str;
+        String str = "Exits: ";
+        for(Direction exitDir : exits.keySet()){
+            str += exitDir.toString()+" ";
+        }
+        return str;
     }
     
     public String getLongDescription(){
-    	return "You are "+description+".\n"+getExitLocationsString();
+        return "You are "+description+".\n"+getExitLocationsString();
     }
     
     /**
@@ -76,40 +76,48 @@ class Room
      * exit has been defined already.
      */
     public Room getExit(Direction dir){
-    	return exits.get(dir);
+        return exits.get(dir);
     }
     
+    /**
+     * @returns true if the room has an exit in that direction
+     */
     public boolean hasExit(Direction dir){
-    	return !(exits.get(dir)==null||exits.get(dir).isEmpty());
+        return !(exits.get(dir)==null||exits.get(dir).isEmpty());
     }
     
     public boolean isEmpty(){
-    	return description==""&&(exits.isEmpty()||exits==null);
+        return description==""&&(exits.isEmpty()||exits==null);
     }
     
+    /**
+     * @returns The direction of an exit room if it exists, if not returns Direction.NULL
+     */
     public Direction isAnExit(Room room){
-    	if(exits.containsValue(room)){
-    		for(Entry<Direction, Room> entry : exits.entrySet()){
-    			if(entry.getValue().equals(room)) return entry.getKey();
-    		}
-    	}
-    	return Direction.NULL; 
-    	/* returns null in case I want to read the result of this method 
-    	 * in a situation where I don't want an actual null value.*/
-    }
-	
-    public void setDescription(String description){
-    	this.description = description;
+        if(exits.containsValue(room)){
+            for(Entry<Direction, Room> entry : exits.entrySet()){
+                if(entry.getValue().equals(room)) return entry.getKey();
+            }
+        }
+        return Direction.NULL; 
+        /* returns null in case I want to read the result of this method 
+         * in a situation where I don't want an actual null value.*/
     }
     
+    /**
+     * A convenience method for setting all exits at once. If a parameter is null, it wont be 
+     * added to [hash]map of exits.
+     *
+     * The order of directions is NORTH, EAST, SOUTH, WEST, UP and DOWN.
+     */
     public void setExits(Room north, Room east, Room south, Room west, Room up, Room down){
-		if(north!=null) setExit(north, Direction.NORTH);
-		if(east!=null) setExit(east, Direction.EAST);
-		if(south!=null) setExit(south, Direction.SOUTH);
-		if(west!=null) setExit(west, Direction.WEST);
-		if(up!=null) setExit(up, Direction.UP);
-		if(down!=null) setExit(down, Direction.DOWN);
-	}
+        if(north!=null) setExit(north, Direction.NORTH);
+        if(east!=null) setExit(east, Direction.EAST);
+        if(south!=null) setExit(south, Direction.SOUTH);
+        if(west!=null) setExit(west, Direction.WEST);
+        if(up!=null) setExit(up, Direction.UP);
+        if(down!=null) setExit(down, Direction.DOWN);
+    }
     
     /**
      * This calls the Hashmap.put() method, meaning it will
@@ -118,17 +126,44 @@ class Room
      * Nulls should be okay as parameters since they will be
      * caught here and replaced by Room.empty()
      */
-	public void setExit(Room exit, Direction dir){
-		exits.put(dir, exit==null ? Room.empty() : exit);
-	}
-	
-	public enum Direction{
-		NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
-		
-		@Override
-		public String toString(){
-			return super.toString().toLowerCase();
-		}
-	}
+    public void setExit(Room exit, Direction dir){
+        exits.put(dir, exit==null ? Room.empty() : exit);
+    }
+    
+    /**
+     * Represents cardinal directions, as well as up, down, and null.
+     */
+    public enum Direction{
+        NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
+        
+        @Override
+        public String toString(){
+            return super.toString().toLowerCase();
+        }
+        
+        /**
+         * Parses
+         */
+        public static Direction parse(String str){
+            // A quick example of the other possible way to parse.
+//             Direction dir = Direction.NULL;
+//             if(equalsIgnore(str, "north")) dir = Direction.NORTH;
+//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
+//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
+//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
+//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
+//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
+//             return dir;
+            
+            return
+                str.equalsIgnoreCase("north") ? Direction.NORTH :
+                str.equalsIgnoreCase("east") ? Direction.EAST :
+                str.equalsIgnoreCase("south") ? Direction.SOUTH :
+                str.equalsIgnoreCase("west") ? Direction.WEST :
+                str.equalsIgnoreCase("up") ? Direction.UP :
+                str.equalsIgnoreCase("down") ? Direction.DOWN :
+                Direction.NULL;
+        }
+    }
 
 }

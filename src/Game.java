@@ -36,8 +36,8 @@ class Game
      * This is used for testing in jar form or eclipse.
      */
     public static void main(String[] args){
-    	Game game = new Game();
-    	game.play();
+        Game game = new Game();
+        game.play();
     }
 
     /**
@@ -54,7 +54,7 @@ class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         workshop = new Room("in the craft/wood workshop");
-        basement = new Room("in the workshop's stoarge Basement");
+        basement = new Room("in the workshop's storage Basement");
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
         
@@ -98,9 +98,9 @@ class Game
     private void printWelcome()
     {
         System.out.println("\nWelcome to Adventure!" +
-    		"\nAdventure is a new, incredibly boring adventure game." +
-    		"\nType 'help' if you need help.\n"
-		);
+            "\nAdventure is a new, incredibly boring adventure game." +
+            "\nType 'help' if you need help.\n"
+        );
         printRoomDescription();
     }
     
@@ -110,7 +110,7 @@ class Game
      * Replaces printExits()
      */
     private void printRoomDescription(){
-    	System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getLongDescription());
     }
     
     /**
@@ -119,16 +119,16 @@ class Game
      * AKA printLocationInfo();
      */
 //    private void printExits(){
-//    	System.out.println("You are " + currentRoom.getDescription());
+//      System.out.println("You are " + currentRoom.getDescription());
 //        System.out.print("Exits: \t"+
-//        		(currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
-//				(currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
-//				(currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
-//				(currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
-//				(currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
-//				(currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
-//				"\n"
-//    		);
+//              (currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
+//              (currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
+//              (currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
+//              (currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
+//              (currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
+//              (currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
+//              "\n"
+//          );
 //    }
 
     /**
@@ -167,9 +167,9 @@ class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander" +
-        		"\naround at the university.\n" +
-        		"\nYour command words are:\n"
-    		);
+                "\naround at the university.\n" +
+                "\nYour command words are:\n"
+            );
         System.out.println("\tgo\t|\tquit\t|\thelp");
     }
 
@@ -185,30 +185,33 @@ class Game
             return;
         }
 
-        String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        // TODO: improve by integrating the string directions with the enum directions
+//         String direction = command.getSecondWord();
+        Room.Direction dir = Room.Direction.parse(command.getSecondWord());
+        
         Room nextRoom = null;
-        if(direction.equals("north"))
-            nextRoom = currentRoom.getExit(Room.Direction.NORTH);
-        if(direction.equals("east"))
-            nextRoom = currentRoom.getExit(Room.Direction.EAST);
-        if(direction.equals("south"))
-            nextRoom = currentRoom.getExit(Room.Direction.SOUTH);
-        if(direction.equals("west"))
-            nextRoom = currentRoom.getExit(Room.Direction.WEST);
-        if(direction.equals("up"))
-            nextRoom = currentRoom.getExit(Room.Direction.UP);
-        if(direction.equals("down"))
-            nextRoom = currentRoom.getExit(Room.Direction.DOWN);
-
-        if (nextRoom == null || nextRoom.isEmpty())
+        
+        if(!currentRoom.hasExit(dir)){
             System.out.println("There is no exit that way!");
-        else {
+        } else {
+            nextRoom = currentRoom.getExit(dir);
             currentRoom = nextRoom;
             printRoomDescription();
         }
+//         if(direction.equals("north"))
+//             nextRoom = currentRoom.getExit(Room.Direction.NORTH);
+//         if(direction.equals("east"))
+//             nextRoom = currentRoom.getExit(Room.Direction.EAST);
+//         if(direction.equals("south"))
+//             nextRoom = currentRoom.getExit(Room.Direction.SOUTH);
+//         if(direction.equals("west"))
+//             nextRoom = currentRoom.getExit(Room.Direction.WEST);
+//         if(direction.equals("up"))
+//             nextRoom = currentRoom.getExit(Room.Direction.UP);
+//         if(direction.equals("down"))
+//             nextRoom = currentRoom.getExit(Room.Direction.DOWN);
+
+        
+        
     }
 
     /** 
