@@ -10,9 +10,11 @@
  *  you've never seen before. The dark hallway leads to the vault full of
  *  old pieces of technology and relics of the past the school has saved.
  *  
+ *  
+ *  
  * -------
  * 
- * @version 2.0 (1/28/13)
+ * @version 02.06.2013
  * @author Evan O'Connell
  * 
  * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
@@ -106,30 +108,10 @@ class Game
     
     /**
      * Retrieves and prints description info from currentRoom object. 
-     * 
-     * Replaces printExits()
      */
     private void printRoomDescription(){
         System.out.println(currentRoom.getLongDescription());
     }
-    
-    /**
-     * Prints out all possible exits from your location.
-     * 
-     * AKA printLocationInfo();
-     */
-//    private void printExits(){
-//      System.out.println("You are " + currentRoom.getDescription());
-//        System.out.print("Exits: \t"+
-//              (currentRoom.hasExit(Room.Direction.NORTH) ? "north " : "")+
-//              (currentRoom.hasExit(Room.Direction.EAST) ? "east " : "")+
-//              (currentRoom.hasExit(Room.Direction.SOUTH) ? "south " : "")+
-//              (currentRoom.hasExit(Room.Direction.WEST) ? "west " : "")+
-//              (currentRoom.hasExit(Room.Direction.UP) ? "upstairs " : "")+
-//              (currentRoom.hasExit(Room.Direction.DOWN) ? "downstairs " : "")+
-//              "\n"
-//          );
-//    }
 
     /**
      * Given a command, process (that is: execute) the command.
@@ -144,7 +126,6 @@ class Game
             System.out.println("I don't know what you mean...");
             return false;
         }
-        
         
         String commandWord = command.getCommandWord();
         if (commandWord.equalsIgnoreCase("help"))
@@ -184,8 +165,6 @@ class Game
             System.out.println("Go where?");
             return;
         }
-
-//         String direction = command.getSecondWord();
         Room.Direction dir = Room.Direction.parse(command.getSecondWord());
         
         Room nextRoom = null;
@@ -197,20 +176,6 @@ class Game
             currentRoom = nextRoom;
             printRoomDescription();
         }
-//         if(direction.equals("north"))
-//             nextRoom = currentRoom.getExit(Room.Direction.NORTH);
-//         if(direction.equals("east"))
-//             nextRoom = currentRoom.getExit(Room.Direction.EAST);
-//         if(direction.equals("south"))
-//             nextRoom = currentRoom.getExit(Room.Direction.SOUTH);
-//         if(direction.equals("west"))
-//             nextRoom = currentRoom.getExit(Room.Direction.WEST);
-//         if(direction.equals("up"))
-//             nextRoom = currentRoom.getExit(Room.Direction.UP);
-//         if(direction.equals("down"))
-//             nextRoom = currentRoom.getExit(Room.Direction.DOWN);
-
-        
         
     }
 
