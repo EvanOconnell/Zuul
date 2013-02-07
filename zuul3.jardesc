@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/Users/Evan/Desktop/Oconnell-Evan-zuul3.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Oconnell-Evan-zuul3/zuul3.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=Oconnell-Evan-zuul3/src&lt;Zuul{Game.java[Game" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <file path="/Oconnell-Evan-zuul3/.project"/>
+        <javaElement handleIdentifier="=Oconnell-Evan-zuul3/src"/>
+        <file path="/Oconnell-Evan-zuul3/Thumbs.db"/>
+        <file path="/Oconnell-Evan-zuul3/.gitignore"/>
+        <file path="/Oconnell-Evan-zuul3/zuul3.jardesc"/>
+        <file path="/Oconnell-Evan-zuul3/zullmap.png"/>
+        <file path="/Oconnell-Evan-zuul3/.classpath"/>
+        <file path="/Oconnell-Evan-zuul3/README.md"/>
+    </selectedElements>
+</jardesc>
