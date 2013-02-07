@@ -60,18 +60,59 @@ class Game
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
         
-        /* nulls should be okay since they're caught in Room.setExit()
-         * right before they reach the hashmap.
-         */
-        outside.setExits(null, theatre, lab, pub, null, null);
-        theatre.setExits(null, null, null, outside, null, null);
-        pub.setExits(null, outside, null, null, null, null);
-        lab.setExits(outside, office, null, null, null, null);
-        office.setExits(null, null, workshop, lab, null, null);
-        workshop.setExits(office, null, null, null, null, basement);
-        basement.setExits(hallway, null, null, null, workshop, null);
-        hallway.setExits(vault, null, basement, null, null, null);
-        vault.setExits(null, null, hallway, null, null, null);
+//        outside.setExits(null, theatre, lab, pub, null, null);
+//        theatre.setExits(null, null, null, outside, null, null);
+//        pub.setExits(null, outside, null, null, null, null);
+//        lab.setExits(outside, office, null, null, null, null);
+//        office.setExits(null, null, workshop, lab, null, null);
+//        workshop.setExits(office, null, null, null, null, basement);
+//        basement.setExits(hallway, null, null, null, workshop, null);
+//        hallway.setExits(vault, null, basement, null, null, null);
+//        vault.setExits(null, null, hallway, null, null, null);
+        
+        
+        //outside.setExits(null, theatre, lab, pub, null, null);
+        
+        outside.setExit(theatre, Direction.EAST);
+        outside.setExit(lab, Direction.SOUTH);
+        outside.setExit(pub, Direction.WEST);
+        
+        //theatre.setExits(null, null, null, outside, null, null);
+        
+        theatre.setExit(outside, Direction.WEST);
+        
+        //pub.setExits(null, outside, null, null, null, null);
+        
+        pub.setExit(outside, Direction.EAST);
+        
+        //lab.setExits(outside, office, null, null, null, null);
+        
+        lab.setExit(outside, Direction.NORTH);
+        lab.setExit(office, Direction.EAST);
+        
+        //office.setExits(null, null, workshop, lab, null, null);
+        
+        office.setExit(workshop, Direction.SOUTH);
+        office.setExit(lab, Direction.WEST);
+        
+        //workshop.setExits(office, null, null, null, null, basement);
+        
+        workshop.setExit(office, Direction.NORTH);
+        workshop.setExit(basement, Direction.DOWN);
+        
+        //basement.setExits(hallway, null, null, null, workshop, null);
+        
+        basement.setExit(hallway, Direction.NORTH);
+        basement.setExit(workshop, Direction.UP);
+        
+        //hallway.setExits(vault, null, basement, null, null, null);
+        
+        hallway.setExit(vault, Direction.NORTH);
+        hallway.setExit(basement, Direction.SOUTH);
+        
+        //vault.setExits(null, null, hallway, null, null, null);
+        
+        vault.setExit(hallway, Direction.SOUTH);
         
         currentRoom = outside;
     }
