@@ -81,7 +81,17 @@ public class Game
         hallway.setExit(basement, Direction.SOUTH);
         vault.setExit(hallway, Direction.SOUTH);
         
-        lab.addItems(new Item("A potted plant", 15), new Item("A trashcan", 10));
+        lab.addItems(new Item("A potted plant", 7), new Item("A trashcan", 4.5));
+        pub.addItems(new Item("A mug of coffee", .2), new Item("A half empty bottle of beer", .2));
+        office.addItems(new Item("A laptop", .9), new Item("A cart of laptops", 59));
+        workshop.addItems(new Item("A sheet of plywood", 7), new Item("A drywall saw", .5));
+        basement.addItems(new Item("A sheet of plywood", 7), new Item("A box of posters", 4.5));
+        vault.addItems(
+    			new Item("An *old* CRT monitor", 11), 
+    			new Item("A box FULL of old 256 MB RAM", 7.5),
+    			new Item("A mechanical keyboard", 2.3),
+    			new Item("An old overhead projector", 3)
+			);
         
         
         currentRoom = outside;

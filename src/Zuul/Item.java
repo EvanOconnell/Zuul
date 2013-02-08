@@ -18,7 +18,7 @@ public class Item {
 	 * periods in case someone wants to add more to the sentence.
 	 * @param weight_lb Item's weight in pounds.
 	 */
-	public Item(String desc, int weight_kg){
+	public Item(String desc, double weight_kg){
 		this.description = desc;
 		this.weight = weight_kg;
 	}
@@ -37,11 +37,14 @@ public class Item {
 		return weight;
 	}
 	
+	boolean display_pounds = true;
+	
 	/**
 	 * @return A summary of the item in the form of a sentence.
 	 */
 	@Override
 	public String toString(){
-		return description+", weighing about "+weight+"kg";
+		double pounds = (double) Math.round(weight*2.2*100000)/100000;
+		return description+", weighing about "+weight+"kg"+(display_pounds ? " ("+pounds+" lb)" : "");
 	}
 }

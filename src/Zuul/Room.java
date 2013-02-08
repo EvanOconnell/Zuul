@@ -78,7 +78,7 @@ public class Room
     	for(Item item : this.items){
     		items += "\n  - "+item;
     	}
-        return "You are "+description+"."+items+"\n\n"+getExitLocationsString();
+        return "You are "+description+"."+(hasItems() ? items+"\n" :"")+"\n"+getExitLocationsString();
     }
     
     /**
@@ -94,6 +94,13 @@ public class Room
 	 */
 	public ArrayList<Item> getItems() {
 		return items;
+	}
+	
+	/**
+	 * @return true if the Room instance has one of more Items.
+	 */
+	public boolean hasItems(){
+		return !items.isEmpty();
 	}
     
     /**
