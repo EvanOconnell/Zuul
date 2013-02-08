@@ -1,12 +1,16 @@
 package Zuul;
-/*
+
+/**
  * This class is the main class of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
  * 
  * This class holds an enumeration of all command words known to the game.
  * It is used to recognise commands as they are typed in.
  *
- * @version 1.1 (1/17/13)
+ * -------
+ * 
+ * @version 3 (02.06.2013) 
+ * @author Evan O'Connell
  */
 
 class CommandWords
@@ -45,9 +49,9 @@ class CommandWords
     /**
      * @returns A string list of all valid commands defined in the CommandWords class
      * 
-     * Probably will rename this to "getCommandList()" later on + more improvements
+     * The string returned does not end with a space
      */
-    public String showAll(){
+    public static String getCommandStringList(){
     	String str = "";
     	for(String cmd : validCommands){
     		str += cmd+" ";

@@ -16,7 +16,10 @@ import java.util.StringTokenizer;
  * the known commands, and if the input is not one of the known commands, it
  * returns a command object that is marked as an unknown command.
  * 
- * @version 1.1 (1/17/13)
+ * -------
+ * 
+ * @version 3 (02.06.2013) 
+ * @author Evan O'Connell
  */
 
 class Parser 
@@ -67,9 +70,5 @@ class Parser
             return new Command(word1, word2);
         else
             return new Command(null, word2);
-    }
-    
-    public String showCommands(){
-    	return commands.showAll();
     }
 }

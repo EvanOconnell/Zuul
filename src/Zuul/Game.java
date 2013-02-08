@@ -178,7 +178,7 @@ class Game
                 "\naround at the university."+
                 "\n\nYour command words are:"
             );
-        System.out.println("\n"+parser.showCommands());
+        System.out.println("\n"+CommandWords.getCommandStringList());
     }
     
     /** Look around the room.
