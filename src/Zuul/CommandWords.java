@@ -13,7 +13,7 @@ package Zuul;
  * @author Evan O'Connell
  */
 
-class CommandWords
+public class CommandWords
 {
     // a constant array that holds all valid command words
     private static final String validCommands[] = {
@@ -29,7 +29,8 @@ class CommandWords
      */
     public CommandWords()
     {
-        // nothing to do at the moment...
+        // nothing to do at the moment... 
+    	// Hopefully never. Why would you want to instantiate a class containing an array of constants?
     }
 
     /**

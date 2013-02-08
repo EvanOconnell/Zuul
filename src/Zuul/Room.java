@@ -1,4 +1,5 @@
 package Zuul;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -23,10 +24,11 @@ import java.util.Map.Entry;
  * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
  */
 
-class Room 
+public class Room 
 {
     private String description;
     private HashMap<Direction, Room> exits;
+    private ArrayList<Item> items;
     
 
     /**
@@ -38,6 +40,7 @@ class Room
     public Room(String description){
         this.description = description;
         exits = new HashMap<Room.Direction, Room>();
+        items = new ArrayList<Item>();
     }
     
     /**
@@ -68,8 +71,14 @@ class Room
         return str;
     }
     
+    boolean numbered_list = false;
+    
     public String getLongDescription(){
-        return "You are "+description+".\n"+getExitLocationsString();
+    	String items = "\nItems:";
+    	for(Item item : this.items){
+    		items += "\n  - "+item;
+    	}
+        return "You are "+description+"."+items+"\n\n"+getExitLocationsString();
     }
     
     /**
@@ -79,6 +88,13 @@ class Room
     public Room getExit(Direction dir){
         return exits.get(dir);
     }
+    
+    /**
+	 * @return The list of items
+	 */
+	public ArrayList<Item> getItems() {
+		return items;
+	}
     
     /**
      * @returns true if the room has an exit in that direction
@@ -105,20 +121,6 @@ class Room
          * in a situation where I don't want an actual null value.*/
     }
     
-    /**
-     * A convenience method for setting all exits at once. If a parameter is null, it wont be 
-     * added to [hash]map of exits.
-     *
-     * The order of directions is NORTH, EAST, SOUTH, WEST, UP and DOWN.
-     */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down){
-        if(north!=null) setExit(north, Direction.NORTH);
-        if(east!=null) setExit(east, Direction.EAST);
-        if(south!=null) setExit(south, Direction.SOUTH);
-        if(west!=null) setExit(west, Direction.WEST);
-        if(up!=null) setExit(up, Direction.UP);
-        if(down!=null) setExit(down, Direction.DOWN);
-    }
     
     /**
      * This calls the Hashmap.put() method, meaning it will
@@ -132,6 +134,22 @@ class Room
     }
     
     /**
+     * Adds an item to the item list for this room.
+     */
+    public void addItem(Item item){
+    	items.add(item);
+    }
+    
+    /**
+     * @param Multiple items to add to room
+     */
+	public void addItems(Item ... args){
+		for(Item item : args){
+			this.items.add(item);
+		}	
+	}
+
+	/**
      * Represents cardinal directions, as well as up, down, and null.
      */
     public enum Direction{
@@ -142,20 +160,11 @@ class Room
             return super.toString().toLowerCase();
         }
         
-        /**
-         * Parses
+        /** Parses a string for convenience
+         * 
+         * @return a Direction enum constant (eg. NORTH)
          */
         public static Direction parse(String str){
-            // A quick example of the other possible way to parse.
-//             Direction dir = Direction.NULL;
-//             if(equalsIgnore(str, "north")) dir = Direction.NORTH;
-//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
-//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
-//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
-//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
-//             if(equalsIgnore(str, "north")) dir =Direction.NORHT;
-//             return dir;
-            
             return
                 str.equalsIgnoreCase("north") ? Direction.NORTH :
                 str.equalsIgnoreCase("east") ? Direction.EAST :

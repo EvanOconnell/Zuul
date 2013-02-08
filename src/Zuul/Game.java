@@ -24,7 +24,7 @@ import Zuul.Room.Direction;
  * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
  */
 
-class Game 
+public class Game 
 {
     private final Parser parser;
     private Room currentRoom;
@@ -64,16 +64,6 @@ class Game
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
         
-//        outside.setExits(null, theatre, lab, pub, null, null);
-//        theatre.setExits(null, null, null, outside, null, null);
-//        pub.setExits(null, outside, null, null, null, null);
-//        lab.setExits(outside, office, null, null, null, null);
-//        office.setExits(null, null, workshop, lab, null, null);
-//        workshop.setExits(office, null, null, null, null, basement);
-//        basement.setExits(hallway, null, null, null, workshop, null);
-//        hallway.setExits(vault, null, basement, null, null, null);
-//        vault.setExits(null, null, hallway, null, null, null);
-        
         outside.setExit(theatre, Direction.EAST);
         outside.setExit(lab, Direction.SOUTH);
         outside.setExit(pub, Direction.WEST);
@@ -90,6 +80,9 @@ class Game
         hallway.setExit(vault, Direction.NORTH);
         hallway.setExit(basement, Direction.SOUTH);
         vault.setExit(hallway, Direction.SOUTH);
+        
+        lab.addItems(new Item("A potted plant", 15), new Item("A trashcan", 10));
+        
         
         currentRoom = outside;
     }
@@ -117,9 +110,10 @@ class Game
      */
     private void printWelcome()
     {
-        System.out.println("\nWelcome to Adventure!" +
+        System.out.println("Welcome to Adventure!" +
             "\nAdventure is a new, incredibly boring adventure game." +
-            "\nType 'help' if you need help.\n"
+            "\nType 'help' if you need help.\n"+
+            "\n-----------------------------\n"
         );
         printRoomDescription();
     }

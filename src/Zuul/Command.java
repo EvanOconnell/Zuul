@@ -17,7 +17,7 @@ package Zuul;
  * @version 1.1 (1/17/13)
  */
 
-class Command
+public class Command
 {
     private String commandWord;
     private String secondWord;
