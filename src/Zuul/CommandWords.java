@@ -42,14 +42,18 @@ class CommandWords
         return false;
     }
     
-    public void showAll(){
+    /**
+     * @returns A string list of all valid commands defined in the CommandWords class
+     * 
+     * Probably will rename this to "getCommandList()" later on + more improvements
+     */
+    public String showAll(){
     	String str = "";
     	for(String cmd : validCommands){
     		str += cmd+" ";
     	}
     	str = str.trim();
-    	//return str;
-    	System.out.println(str);
+    	return str;
     }
 
 }
