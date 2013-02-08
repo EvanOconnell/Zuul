@@ -1,6 +1,5 @@
-package Zuul;
 
-import Zuul.Room.Direction;
+
 
 /**
  * 
@@ -64,22 +63,22 @@ public class Game
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
         
-        outside.setExit(theatre, Direction.EAST);
-        outside.setExit(lab, Direction.SOUTH);
-        outside.setExit(pub, Direction.WEST);
-        theatre.setExit(outside, Direction.WEST);
-        pub.setExit(outside, Direction.EAST);
-        lab.setExit(outside, Direction.NORTH);
-        lab.setExit(office, Direction.EAST);
-        office.setExit(workshop, Direction.SOUTH);
-        office.setExit(lab, Direction.WEST);
-        workshop.setExit(office, Direction.NORTH);
-        workshop.setExit(basement, Direction.DOWN);
-        basement.setExit(hallway, Direction.NORTH);
-        basement.setExit(workshop, Direction.UP);
-        hallway.setExit(vault, Direction.NORTH);
-        hallway.setExit(basement, Direction.SOUTH);
-        vault.setExit(hallway, Direction.SOUTH);
+        outside.setExit(theatre, Room.Direction.EAST);
+        outside.setExit(lab, Room.Direction.SOUTH);
+        outside.setExit(pub, Room.Direction.WEST);
+        theatre.setExit(outside, Room.Direction.WEST);
+        pub.setExit(outside, Room.Direction.EAST);
+        lab.setExit(outside, Room.Direction.NORTH);
+        lab.setExit(office, Room.Direction.EAST);
+        office.setExit(workshop, Room.Direction.SOUTH);
+        office.setExit(lab, Room.Direction.WEST);
+        workshop.setExit(office, Room.Direction.NORTH);
+        workshop.setExit(basement, Room.Direction.DOWN);
+        basement.setExit(hallway, Room.Direction.NORTH);
+        basement.setExit(workshop, Room.Direction.UP);
+        hallway.setExit(vault, Room.Direction.NORTH);
+        hallway.setExit(basement, Room.Direction.SOUTH);
+        vault.setExit(hallway, Room.Direction.SOUTH);
         
         lab.addItems(new Item("A potted plant", 7), new Item("A trashcan", 4.5));
         pub.addItems(new Item("A mug of coffee", .2), new Item("A half empty bottle of beer", .2));

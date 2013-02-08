@@ -1,4 +1,4 @@
-package Zuul;
+
 
 /** 
  * A class representing a generic item, containing a weight and a description.
