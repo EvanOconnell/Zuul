@@ -68,4 +68,8 @@ class Parser
         else
             return new Command(null, word2);
     }
+    
+    public void showCommands(){
+    	commands.showAll();
+    }
 }

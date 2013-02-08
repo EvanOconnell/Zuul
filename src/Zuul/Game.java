@@ -174,11 +174,11 @@ class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander" +
-                "\naround at the university.\n" +
-                "\nYour command words are:\n"
+        System.out.println("You are lost. You are alone. You wander"+
+                "\naround at the university."+
+                "\n\nYour command words are:"
             );
-        System.out.println("\tgo\t|\tquit\t|\thelp");
+        parser.showCommands();
     }
     
     /** Look around the room.
