@@ -62,8 +62,6 @@ public class Scenario
     			new Item("An old overhead projector", 3)
 			);
         
-        
-        
         startRoom = outside;
     }
 

@@ -27,13 +27,15 @@ public class Game
 {
     private final Parser parser;
     private Room currentRoom;
+    private Scenario scenario;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
-        createRooms();//TODO : use Scenario constructor instead
+        scenario = new Scenario();
+        currentRoom = scenario.getStartRoom();
         parser = new Parser();
     }
     
