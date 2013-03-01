@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Random;
  */
 public class Scenario
 {
-    private ArrayList<Room> rooms;
+    private List<Room> rooms;
     private Room startRoom;
     
     private Random random;
@@ -22,7 +23,6 @@ public class Scenario
     public Scenario()
     {
         random = new Random();
-        rooms = new ArrayList<Room>();
         
         Room outside, theatre, pub, lab, office, workshop, basement, hallway, vault, shed;
         
@@ -61,7 +61,7 @@ public class Scenario
         hallway.setExit(basement, Room.Direction.SOUTH);
         vault.setExit(hallway, Room.Direction.SOUTH);
         
-        
+        rooms = Arrays.asList(new Room[]{shed, outside, theatre, pub, lab, office, workshop, basement});
         startRoom = outside;
     }
 
