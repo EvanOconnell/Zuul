@@ -43,6 +43,11 @@ public class Room
         items = new ArrayList<Item>();
     }
     
+    public Room(String description, Item ... items){
+    	this(description);
+    	addItems(items);
+    }
+    
     /**
      * An empty Room object, for use instead of 'null' in the setExits()
      * method. Since a hashmap is used, this will help avoid NPEs.
