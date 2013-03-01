@@ -166,6 +166,9 @@ public class Game
             System.out.println("There is no exit that way!");
         } else {
             nextRoom = currentRoom.getExit(dir);
+            if(currentRoom instanceof TransporterRoom){
+            	System.out.println("You have stumbled upon a magical doorway! \nIt seemed to be normal coming into this room, but on the way out the \ndoorknob was glowing, and you're now being transported to a random room!\n");
+            }
             currentRoom = nextRoom;
             printRoomDescription();
         }
