@@ -18,7 +18,7 @@ import java.util.Map.Entry;
  * 
  * -------
  * 
- * @version 3 (02.06.2013)
+ * @version 4 (02.28.2013) 
  * @author Evan O'Connell
  * 
  * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
@@ -48,6 +48,7 @@ public class Room
      * method. Since a hashmap is used, this will help avoid NPEs.
      * @return An empty Room object.
      */
+    @Deprecated
     public static Room empty(){
         return new Room(""); 
     }
@@ -123,9 +124,7 @@ public class Room
                 if(entry.getValue().equals(room)) return entry.getKey();
             }
         }
-        return Direction.NULL; 
-        /* returns null in case I want to read the result of this method 
-         * in a situation where I don't want an actual null value.*/
+        return null; 
     }
     
     
@@ -160,7 +159,7 @@ public class Room
      * Represents cardinal directions, as well as up, down, and null.
      */
     public enum Direction{
-        NORTH, EAST, SOUTH, WEST, UP, DOWN, NULL;
+        NORTH, EAST, SOUTH, WEST, UP, DOWN, @Deprecated NULL;
         
         @Override
         public String toString(){
@@ -179,7 +178,7 @@ public class Room
                 str.equalsIgnoreCase("west") ? Direction.WEST :
                 str.equalsIgnoreCase("up") ? Direction.UP :
                 str.equalsIgnoreCase("down") ? Direction.DOWN :
-                Direction.NULL;
+                null;
         }
     }
 

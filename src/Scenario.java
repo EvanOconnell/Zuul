@@ -4,8 +4,10 @@ import java.util.Random;
 /**
  * Represents a game scenario including connected rooms and items
  * 
- * @author Tang
- * @version 2013.02.16
+ * @version 4 (02.28.2013) 
+ * @author Evan O'Connell
+ * 
+ * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
  */
 public class Scenario
 {
@@ -20,9 +22,11 @@ public class Scenario
     public Scenario()
     {
         random = new Random();
+        rooms = new ArrayList<Room>();
         
-        Room outside, theatre, pub, lab, office, workshop, basement, hallway, vault;
+        Room outside, theatre, pub, lab, office, workshop, basement, hallway, vault, shed;
         
+        shed = new TransporterRoom("outside the main entrance of the university, in a Janitor's shed", this);
         outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
@@ -33,6 +37,8 @@ public class Scenario
         hallway = new Room("in a dark hallway out of the basement you've never seen before...");
         vault = new Room("in a wonderful vault filled with old equipment, materials, and technological relics from years ago.");
         
+        shed.setExit(outside, Room.Direction.SOUTH);
+        outside.setExit(shed, Room.Direction.NORTH);
         outside.setExit(theatre, Room.Direction.EAST);
         outside.setExit(lab, Room.Direction.SOUTH);
         outside.setExit(pub, Room.Direction.WEST);

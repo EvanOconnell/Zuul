@@ -1,6 +1,3 @@
-
-
-
 /**
  * 
  *  To play this game, create an instance of this class and call the "play"
@@ -17,7 +14,7 @@
  *  
  * -------
  * 
- * @version 3 (02.06.2013) 
+ * @version 4 (02.28.2013) 
  * @author Evan O'Connell
  * 
  * Commits and repo can be seen at http://github.com/EvanOconnell/Zuul.git
